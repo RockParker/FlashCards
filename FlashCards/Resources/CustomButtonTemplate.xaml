@@ -1,0 +1,62 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ColourDictionary.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="CustomButtonTemplate" TargetType="Button">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Background" Value="{StaticResource MainButtonBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <!-- Here we need to set the Control Template Properties.
+                    This includes all things that the button does visually.-->
+
+                    <!-- init a border so that we can edit it when implementing-->
+                    <Border x:Name="ButtonBorder" CornerRadius="{TemplateBinding Border.CornerRadius}"
+                                BorderThickness="{TemplateBinding Border.BorderThickness}" 
+                                BorderBrush="{TemplateBinding Border.BorderBrush}">
+                        <!-- The grid hosts the actual "content" of the control(Text but also any images)-->
+                        <Grid x:Name="ButtonGrid" Background="{TemplateBinding Background}">
+
+                            <!-- Letting the background of the rectangle 
+                            just be transparent to show the background of the template-->
+                            <Rectangle Fill="Transparent">
+
+                            </Rectangle>
+
+                            <!--Hosts the Content Property. So text-->
+                            <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center">
+
+                            </ContentPresenter>
+
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="Yellow"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <Style x:Key="RoundedCornerButton" BasedOn="{StaticResource CustomButtonTemplate}" TargetType="Button">
+        <Setter Property="Border.CornerRadius" Value="10"/>
+
+    </Style>
+
+</ResourceDictionary>
