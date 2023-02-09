@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FlashCards"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
-    <Frame Name = "MainFrame"/>
+        Title="MainWindow" Height="720" Width="1280"
+        WindowStartupLocation="CenterScreen">
+    <Frame Name = "MainFrame" NavigationUIVisibility="Hidden"/>
 </Window>

@@ -6,7 +6,13 @@
 
     <Style x:Key="CustomButtonTemplate" TargetType="Button">
         <Setter Property="OverridesDefaultStyle" Value="True"/>
-        <Setter Property="Background" Value="{StaticResource MainButtonBrush}"/>
+        <Setter Property="Background" Value="{StaticResource GradientBrush}"/>
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="MinHeight" Value="30"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="15"/>
+
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -38,17 +44,62 @@
             </Setter.Value>
         </Setter>
 
+    </Style>
+
+    <!--This style adds the animation properties. this way I can make another style,
+    that has other animations but maintains the look of the previous style -->
+    <Style x:Key="AnimatedButton" TargetType="Button" BasedOn="{StaticResource CustomButtonTemplate}">
+        
+        <!--Setting the triggers property-->
         <Style.Triggers>
+            <!--These are the animations that happen when the mouse hovers over the control-->
             <Trigger Property="IsMouseOver" Value="True">
                 <Trigger.EnterActions>
                     <BeginStoryboard>
                         <Storyboard>
+                            <DoubleAnimation 
+                                Storyboard.TargetProperty="(Button.Background).(LinearGradientBrush.GradientStops)[1].(GradientStop.Offset)"
+                                To="0.0"
+                                Duration="0:0:0.07"/>
                         </Storyboard>
                     </BeginStoryboard>
                 </Trigger.EnterActions>
+                
+                 <!--Must reset the actions to the original state to make sure they go back into the original state,
+                        The autoreverse doesn't actually reset it-->
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation 
+                                Storyboard.TargetProperty="(Button.Background).(LinearGradientBrush.GradientStops)[1].(GradientStop.Offset)"
+                                To="2.0"
+                                Duration="0:0:0.1"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
             </Trigger>
+            <!--These are the actions that happen when clicked-->
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" Value="Yellow"/>
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="(Button.Background).(Opacity)"
+                                             To="0"
+                                             AutoReverse="True"
+                                             Duration="0:0:0.05"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <!--These trigger after the click happens-->
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="(Button.Background).(Opacity)"
+                                             To="1"
+                                             Duration="0:0:0.05"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -56,6 +107,7 @@
 
     <Style x:Key="RoundedCornerButton" BasedOn="{StaticResource CustomButtonTemplate}" TargetType="Button">
         <Setter Property="Border.CornerRadius" Value="10"/>
+
 
     </Style>
 
