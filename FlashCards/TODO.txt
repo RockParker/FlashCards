@@ -1,0 +1,6 @@
+﻿
+add listview that shows all the cards
+add 3 buttons to the edit window (save, import, export, delete)
+
+figure out how to do user defined filters
+

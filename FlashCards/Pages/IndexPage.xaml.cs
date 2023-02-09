@@ -1,5 +1,9 @@
-﻿using System.Windows;
+﻿using FlashCards.UIElements;
+using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
 
 namespace FlashCards.Pages
 {
@@ -8,16 +12,26 @@ namespace FlashCards.Pages
     /// </summary>
     public partial class IndexPage : Page
     {
-        public IndexPage()
+
+        private Frame _frame;
+        public IndexPage(Frame frame)
         {
             InitializeComponent();
+            _frame = frame;
 
-
+            //setting properties of the flash card
+            fcWelcome.Question = "This is a question";
+            fcWelcome.Answer = "This is an answer";
         }
 
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Clicked");
+            Application.Current.Shutdown();
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            _frame.Navigate(new EditingPage(_frame));
         }
     }
 }

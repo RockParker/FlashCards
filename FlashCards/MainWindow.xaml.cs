@@ -1,5 +1,7 @@
 ﻿using FlashCards.Pages;
 using System.Windows;
+using System.Windows.Controls;
+
 namespace FlashCards
 {
     /// <summary>
@@ -11,7 +13,7 @@ namespace FlashCards
         {
             InitializeComponent();
 
-            this.MainFrame.Navigate(new IndexPage());
+            this.MainFrame.Navigate(new IndexPage(this.MainFrame));
         }
     }
 }

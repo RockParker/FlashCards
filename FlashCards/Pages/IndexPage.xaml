@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:FlashCards.Pages"
+      xmlns:local="clr-namespace:FlashCards.Pages" xmlns:uielements="clr-namespace:FlashCards.UIElements"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="IndexPage"
@@ -12,13 +12,14 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resources/ColourDictionary.xaml"/>
-                <ResourceDictionary Source="/Resources/ButtonTemplate.xaml"/>
+                <ResourceDictionary Source="/Resources/CustomButtonTemplate.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            <Style x:Key="PrimaryButton" TargetType="Button" BasedOn="{StaticResource CustomButtonTemplate}">
-                <Setter Property="BorderBrush" Value="White"/>
-                <Setter Property="BorderThickness" Value="10"/>
+            <Style x:Key="PrimaryButton" TargetType="Button" BasedOn="{StaticResource AnimatedButton}">
+                <Setter Property="BorderBrush" Value="White"/>                
+                <Setter Property="BorderThickness" Value="2"/>
                 <Setter Property="Border.CornerRadius" Value="5"/>
+
             </Style>
         </ResourceDictionary>
         
@@ -35,25 +36,47 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
 
+        <!--This hosts the main buttons and labels-->
+        <StackPanel Grid.ColumnSpan="2"
+                    Grid.RowSpan="4"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="{StaticResource LighterBackgroundBrush}">
+            <Label Margin="20" Name="lblTitle"
+               Foreground="White"
+               Background="Transparent" Content="Flash Card Applet"
+               FontSize="30"
+               />
 
-        <Label Grid.Row="1" Grid.Column="1" 
-               Grid.RowSpan="2" Foreground="White"
-               Background="Transparent" Content="Title"
-               FontSize="30"/>
-
-        <Button Style="{StaticResource PrimaryButton}"
-                Margin="10"
-                Grid.Row="2"
-                Grid.ColumnSpan="3"
-                Click="Button_Click"
-                Name="btnMain"
-                
-                >
-
-        </Button>
+            <Button Style="{StaticResource PrimaryButton}"                 
+                Name="btnStart"
+                Content="Start"/>
 
 
+            <Button Style="{StaticResource PrimaryButton}"                    
+                Name="btnEdit"
+                Content="Edit"
+                    Click="btnEdit_Click"/>
+
+
+            <Button Style="{StaticResource PrimaryButton}"
+                    Name="btnExit"
+                    Content="Exit!"
+                    Click="btnExit_Click"/>
+
+        </StackPanel>
+
+        <!--The tutorial flashcard-->
+        <uielements:FlashCard
+            Grid.Column="2"
+            Grid.ColumnSpan="2"
+            Grid.RowSpan="2"
+            Grid.Row="1"
+            Margin="30"
+            x:Name="fcWelcome"/>
+        
     </Grid>
 </Page>
