@@ -2,6 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!-- Main Window Colours-->
+    <Color x:Key="MainWindowBackground">#252525</Color>
+    <SolidColorBrush x:Key="WindowBackgroundBrush"  Color="{StaticResource MainWindowBackground}"/>
+
     <Color x:Key="MainBackground">#232337</Color>
     <SolidColorBrush x:Key="MainBackgroundBrush" Color="{StaticResource MainBackground}"/>
 
@@ -11,8 +14,16 @@
     <Color x:Key="AnswerColor">#603070</Color>
     <SolidColorBrush x:Key="AnswerBrush" Color="{StaticResource AnswerColor}"/>
 
+    <Color x:Key="QuestionColor">White</Color>
+    <SolidColorBrush x:Key="QuestionBrush" Color="{StaticResource QuestionColor}"/>
+    
+    <Color x:Key="HoverQuestionColor">#e0a0e0</Color>
+    <SolidColorBrush x:Key="HoverQuestionBrush" Color="{StaticResource HoverQuestionColor}"/>
+
     <Color x:Key="LighterAnswerColor">#803090</Color>
     <SolidColorBrush x:Key="LighterAnswerBrush" Color="{StaticResource LighterAnswerColor}"/>
+
+
 
 
     <!-- Button Colours and Brushes-->

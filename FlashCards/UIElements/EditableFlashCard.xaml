@@ -21,16 +21,22 @@
         <Grid Name="HostGrid" Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Name="topGrid" Height="8*"/>
-                <RowDefinition Name="bottomGrid" MinHeight="40"/>
+                <RowDefinition Name="bottomGrid" Height="8*"/>
             </Grid.RowDefinitions>
 
             <!--Hosts the question block-->
             <Grid Name="QuestionGrid" Grid.Row="0">
+
+
                 <TextBox Name="lblQuestion" Grid.Column="1" Grid.Row="0"
                    FontSize="20" FontWeight="DemiBold" TextWrapping="Wrap" 
                     GotKeyboardFocus="tbEditable_GotKeyboardFocus"
                     GotMouseCapture="tbEditable_GotMouseCapture"                         
-                       TextAlignment="Center" Text="Question Goes Here"/>
+                       TextAlignment="Center" Text="Question Goes Here"
+                         TextChanged="lbl_TextChanged"/>
+                <Label Name="lblID" FontSize="15" Margin="15" 
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" Content="blah"/>
             </Grid>
 
             <!--Hosts the Answer Block-->
@@ -68,25 +74,24 @@
                 </Border.Triggers>
                 <!--Done with animations-->
 
-                <!--Defining the actual text element-->
+                <!--Defining the actual text element--> <!--MouseUp="AnswerGrid_MouseUp"-->
                 <Grid Name="AnswerGrid"
-                  Background="Transparent"
-                      MouseUp="AnswerGrid_MouseUp"
+                  Background="Transparent"                     
                       Height="{Binding ElementName=bottomGrid, Path=Height}"
-                      MinHeight="40">
-                    <!--Tool Tip-->
+                      MinHeight="40" >        
+                    <!--Tool Tip
                     <TextBlock Name="lblAnswerInfo" 
                                TextAlignment="Center"
-                               Foreground="White">Expand</TextBlock>
+                               Foreground="White">Expand</TextBlock>  -->
 
                     <!--Actual content-->
-                    <TextBox Name="lblAnswer" Margin="35"
+                    <TextBox Name="lblAnswer" Margin="5" Foreground="White"
                                 FontSize="20" FontWeight="DemiBold" 
                                TextWrapping="Wrap" TextAlignment="Center"
-                               Visibility="Collapsed" Text="Answer Goes Here"
+                             Text="Answer Goes Here" Background="Transparent"
                                 GotMouseCapture="tbEditable_GotMouseCapture"
                                 GotKeyboardFocus="tbEditable_GotKeyboardFocus"
-                               Background="Transparent"/>
+                             TextChanged="lbl_TextChanged"/>
                 </Grid>
             </Border>
         </Grid>

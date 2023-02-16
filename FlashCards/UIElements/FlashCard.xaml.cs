@@ -43,6 +43,7 @@ namespace FlashCards.UIElements
 
         }
 
+        public int ID { get; set; }
         public FlashCard()
         {
             InitializeComponent();

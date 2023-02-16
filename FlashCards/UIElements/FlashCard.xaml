@@ -21,7 +21,7 @@
         <Grid Name="HostGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Name="topGrid" Height="8*"/>
-                <RowDefinition Name="bottomGrid" MinHeight="40"/>
+                <RowDefinition Name="bottomGrid" MinHeight="60"/>
             </Grid.RowDefinitions>
 
             <!--Hosts the question block-->
@@ -36,7 +36,7 @@
                     CornerRadius="20" Margin="5"
                     Cursor="Hand"                 
                     Background="{StaticResource LighterAnswerBrush}"
-                    BorderBrush="{StaticResource LighterAnswerBrush}">
+                    MinHeight="40">
                 <!--Animations for the control-->
                 <Border.Triggers>
                     <!--Mouse Enter Event-->
@@ -70,12 +70,13 @@
                 <Grid Name="AnswerGrid"
                   Background="Transparent"
                       MouseUp="AnswerGrid_MouseUp"
-                      Height="{Binding ElementName=bottomGrid, Path=Height}"
-                      MinHeight="40">
+                      Height="{Binding ElementName=bottomGrid, Path=Height}">
                     <!--Tool Tip-->
                     <TextBlock Name="lblAnswerInfo" 
+                               Foreground="White"
+                               FontSize="32"
                                TextAlignment="Center"
-                               Foreground="White">Expand</TextBlock>
+                               FontWeight="Bold">&#9206; </TextBlock>
                     
                     <!--Actual content-->
                     <TextBlock Name="lblAnswer" Margin="10"

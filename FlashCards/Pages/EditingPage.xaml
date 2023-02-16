@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:FlashCards.Pages" xmlns:uielements="clr-namespace:FlashCards.UIElements"
+      xmlns:local="clr-namespace:FlashCards.Pages" xmlns:uielements="clr-namespace:FlashCards.UIElements" xmlns:classes="clr-namespace:FlashCards.Classes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="EditingPage">
@@ -19,43 +19,84 @@
 
     <Grid Background="{StaticResource MainBackgroundBrush}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="6*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 
-        <Border Grid.RowSpan="3" Grid.ColumnSpan="2"
+        <!-- This Section hosts the list of filters -->
+        <Border Grid.RowSpan="2" Grid.Row="1" 
+                Background="{StaticResource GradientBrush}"
+                Margin="5">
+            
+            <ListView Background="Transparent" Name="lv1">
+                    <StackPanel Name="spFilters" Background="Transparent"
+                        Height="{Binding ElementName=lv1, Path=ActualHeight}"
+                        Width="{Binding ElementName=lv1, Path=ActualWidth}"
+                        CanHorizontallyScroll="False"/>
+            </ListView>             
+        </Border>
+
+        <StackPanel Grid.Row="3" VerticalAlignment="Top">
+            <Button Style="{StaticResource AnimatedButton}"
+                    Content="New" />
+            
+            <Button Style="{StaticResource AnimatedButton}"
+                    Content="Delete"/>
+        </StackPanel>
+        <!-- Filter section done -->
+        
+        
+        <!-- Mini Buttons Section -->
+        <Border Grid.RowSpan="4" Grid.ColumnSpan="2"
+                Grid.Column="1"
                 Background="{StaticResource LighterBackgroundBrush}"
                 Margin="40" CornerRadius="20"
                 BorderBrush="White" BorderThickness="2">
-            <StackPanel>
-                
-            </StackPanel>
-        </Border>
-
-        <uielements:EditableFlashCard
-            Grid.Column="2" Grid.ColumnSpan="2"
-            Grid.RowSpan="2"
-            Margin="30">
             
+            <WrapPanel Name="wpCardButtons"/>
+        </Border>
+        
+        <!-- This need a rework
+        <TextBox Grid.Column="3" Grid.ColumnSpan="2"
+                   Foreground="White" FontSize="20"
+                   Background="{StaticResource LighterBackgroundBrush}"
+                 Margin="10" Name="tbFilters">
+                 Tags Here With No Spaces "Math,Science,Unit1"
+        </TextBox>  -->
+        
+        <!-- This is the element that hosts the editable card -->
+        <uielements:EditableFlashCard
+            Grid.Column="3" Grid.ColumnSpan="2"
+            Grid.Row="1" Grid.RowSpan="2"
+            Margin="30" x:Name="fcEditable"
+            >
+
         </uielements:EditableFlashCard>
 
 
-        <Button x:Name="Mitchells"
-                Grid.Column="2" Grid.ColumnSpan="2"
-                Grid.Row="3"
-                Style="{StaticResource AnimatedButton}"
-                Content="BABABOOY"
-                Click="Mitchells_Click">
-            
-        </Button>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Column="3" Grid.Row="3"
+                    Grid.ColumnSpan="2" Name="spControlButtons"
+                    HorizontalAlignment="Center" VerticalAlignment="Top">
 
+            <Button Name="btnNew" Style="{StaticResource AnimatedButton}"
+                    Content="New" MinWidth="100" />
+            <Button Name="btnDelete" Style="{StaticResource AnimatedButton}"
+                    Content="Delete" MinWidth="100" />
+            <Button Name="btnSave" Style="{StaticResource AnimatedButton}"
+                    Content="Save" MinWidth="100"/>
+
+        </StackPanel>
         
+        <!-- End of editable card section -->
     </Grid>
 </Page>

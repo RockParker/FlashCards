@@ -31,7 +31,6 @@ namespace FlashCards.Pages
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            _frame.Navigate(new EditingPage(_frame));
         }
     }
 }

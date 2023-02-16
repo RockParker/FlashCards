@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Accessibility;
+using FlashCards.Classes;
+using FlashCards.UIElements;
+using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Serialization;
 
 namespace FlashCards.Pages
 {
@@ -20,17 +25,17 @@ namespace FlashCards.Pages
     /// </summary>
     public partial class EditingPage : Page
     {
-        Frame _frame;
-        public EditingPage(Frame frame)
+        List<FlashCardData> _flashCards;
+
+        public EditingPage()
         {
+
             InitializeComponent();
+            //fcEditable.textChangedInvoker = CardTextChangedHandler;
 
-            _frame = frame;
-        }
-
-        private void Mitchells_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("BABABOOYIE");
+            //reading the file to the list
+            var temp = FileHandler.FiletoList();
+            _flashCards = (temp == null) ? new() : temp;
         }
     }
 }

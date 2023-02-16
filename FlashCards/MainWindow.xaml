@@ -6,6 +6,64 @@
         xmlns:local="clr-namespace:FlashCards"
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280"
-        WindowStartupLocation="CenterScreen">
-    <Frame Name = "MainFrame" NavigationUIVisibility="Hidden"/>
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        >
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/ColourDictionary.xaml"/>
+                <ResourceDictionary Source="/Resources/CustomButtonTemplate.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Border Background="{StaticResource WindowBackgroundBrush}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="19*"/>
+            <RowDefinition Height="19*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+            <StackPanel Background="{StaticResource LighterBackgroundBrush}" Grid.RowSpan="4"
+                        >
+                
+                <Button Name="btnPlay" Style="{StaticResource AnimatedButton}"
+                        Content="Play" Height="{Binding ElementName=btnPlay, Path=ActualWidth}"
+                        Click="btnPlay_Click"/>
+                
+                <Button x:Name="btnEdit" Style="{StaticResource AnimatedButton}"
+                        Content="Edit" Height="{Binding ElementName=btnEdit, Path=ActualWidth}"
+                        Click="btnEdit_Click"/>
+                
+                <Button Name="btnSettings" Style="{StaticResource AnimatedButton}"
+                        Content="Settings" Height="{Binding ElementName=btnSettings, Path=ActualWidth}"
+                        Click="btnSettings_Click"/>
+                
+                <Button Name="btnExit" Style="{StaticResource AnimatedButton}"
+                        Content="Exit" Height="{Binding ElementName=btnExit, Path=ActualWidth}"
+                        Click="btnExit_Click"/>
+                
+            </StackPanel>
+        
+
+            <Border CornerRadius="30" Padding="10"
+                    Grid.Row="0" Grid.RowSpan="3"
+                    Grid.Column="1" Grid.ColumnSpan="2"
+                    BorderThickness="15" Margin="0"
+                    Background="{StaticResource MainBackgroundBrush}">
+                
+                    <Frame Name = "MainFrame" NavigationUIVisibility="Hidden"/>
+            </Border>
+        </Grid>
+    </Border>
+
 </Window>
