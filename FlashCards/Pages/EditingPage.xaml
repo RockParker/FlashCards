@@ -35,9 +35,11 @@
         <!-- This Section hosts the list of filters -->
         <Border Grid.RowSpan="2" Grid.Row="1" 
                 Background="{StaticResource GradientBrush}"
-                Margin="5">
+                Margin="5" Name="FilterListBorder">
             
-            <ListView Background="Transparent" Name="lv1">
+            <ListView Background="Transparent" Name="lv1" 
+                      Width="{Binding ElementName=FilterListBorder, Path=ActualWidth}"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <StackPanel Name="spFilters" Background="Transparent"
                         Height="{Binding ElementName=lv1, Path=ActualHeight}"
                         Width="{Binding ElementName=lv1, Path=ActualWidth}"
