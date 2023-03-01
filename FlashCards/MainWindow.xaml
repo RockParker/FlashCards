@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280"
         WindowStartupLocation="CenterScreen"
-        WindowStyle="None"
+       
         >
     <Window.Resources>
         <ResourceDictionary>
@@ -32,29 +32,34 @@
             <RowDefinition Height="19*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-
-            <StackPanel Background="{StaticResource LighterBackgroundBrush}" Grid.RowSpan="4"
-                        >
+        
+            <StackPanel Background="{StaticResource LighterBackgroundBrush}" 
+                        Grid.RowSpan="3">
+                <Button Name="btnHome" Style="{StaticResource AnimatedButton}"
+                        Content="&#8962;" Click="BtnHome_Click" FontSize="23" ToolTip="Home"
+                        MinHeight="{Binding ElementName=btnHome, Path=ActualWidth}"/>
                 
                 <Button Name="btnPlay" Style="{StaticResource AnimatedButton}"
-                        Content="Play" Height="{Binding ElementName=btnPlay, Path=ActualWidth}"
-                        Click="btnPlay_Click"/>
+                        Content="&#129170;" MinHeight="{Binding ElementName=btnPlay, Path=ActualWidth}"
+                        Click="btnPlay_Click" FontSize="48" ToolTip="Play"/>
                 
                 <Button x:Name="btnEdit" Style="{StaticResource AnimatedButton}"
-                        Content="Edit" Height="{Binding ElementName=btnEdit, Path=ActualWidth}"
-                        Click="btnEdit_Click"/>
+                        Content="&#128459;" MinHeight="{Binding ElementName=btnEdit, Path=ActualWidth}"
+                        Click="btnEdit_Click" FontSize="23" ToolTip="Edit Cards"/>
                 
                 <Button Name="btnSettings" Style="{StaticResource AnimatedButton}"
-                        Content="Settings" Height="{Binding ElementName=btnSettings, Path=ActualWidth}"
-                        Click="btnSettings_Click"/>
-                
-                <Button Name="btnExit" Style="{StaticResource AnimatedButton}"
-                        Content="Exit" Height="{Binding ElementName=btnExit, Path=ActualWidth}"
-                        Click="btnExit_Click"/>
-                
+                                                            Content="&#9881;" MinHeight="{Binding ElementName=btnSettings, Path=ActualWidth}"
+                                                            Click="btnSettings_Click" FontSize="23" ToolTip="Settings"/>
             </StackPanel>
         
-
+        <StackPanel Grid.Column="0" Grid.Row="2" VerticalAlignment="Bottom">
+            
+            <Button  Name="btnExit" Style="{StaticResource AnimatedButton}"
+                     Content="&#128473;" MinHeight="{Binding ElementName=btnExit, Path=ActualWidth}"
+                     Click="btnExit_Click" FontSize="23" ToolTip="Exit" VerticalAlignment="Bottom"
+            />
+        </StackPanel>
+        
             <Border CornerRadius="30" Padding="10"
                     Grid.Row="0" Grid.RowSpan="3"
                     Grid.Column="1" Grid.ColumnSpan="2"
@@ -65,5 +70,4 @@
             </Border>
         </Grid>
     </Border>
-
 </Window>

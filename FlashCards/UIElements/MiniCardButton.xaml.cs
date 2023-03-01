@@ -21,12 +21,14 @@ namespace FlashCards.UIElements
     public partial class MiniCardButton : UserControl
     {
         public delegate void myDelegate(object sender);
-        public myDelegate? clickInvoker;
-        public int ID;
-        public MiniCardButton(int id)
+        public myDelegate? clickInvoker { get; set; }
+        
+        private int ID;
+        public MiniCardButton(int id, myDelegate invoker)
         {
             InitializeComponent();
             ID = id;
+            clickInvoker = invoker;
         }
 
         private void Click(object sender, MouseEventArgs e)

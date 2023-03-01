@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:FlashCards.Pages" xmlns:uielements="clr-namespace:FlashCards.UIElements" xmlns:classes="clr-namespace:FlashCards.Classes"
+      xmlns:uielements="clr-namespace:FlashCards.UIElements"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="EditingPage">
@@ -48,11 +48,13 @@
         </Border>
 
         <StackPanel Grid.Row="3" VerticalAlignment="Top">
-            <Button Style="{StaticResource AnimatedButton}"
-                    Content="New" />
+            <Button Name="btnNewFilter" Style="{StaticResource AnimatedButton}"
+                    Content="&#10133;" ToolTip="New" Foreground="LawnGreen"
+                    Click="btnNewFilter_Click"/>
             
-            <Button Style="{StaticResource AnimatedButton}"
-                    Content="Delete"/>
+            <Button Name="btnDeleteFilter" Style="{StaticResource AnimatedButton}"
+                    Content="&#45;" ToolTip="Delete" Foreground="Red" FontSize="20"
+                    Click="btnDeleteFilter_Click"/>
         </StackPanel>
         <!-- Filter section done -->
         
@@ -67,13 +69,6 @@
             <WrapPanel Name="wpCardButtons"/>
         </Border>
         
-        <!-- This need a rework
-        <TextBox Grid.Column="3" Grid.ColumnSpan="2"
-                   Foreground="White" FontSize="20"
-                   Background="{StaticResource LighterBackgroundBrush}"
-                 Margin="10" Name="tbFilters">
-                 Tags Here With No Spaces "Math,Science,Unit1"
-        </TextBox>  -->
         
         <!-- This is the element that hosts the editable card -->
         <uielements:EditableFlashCard
@@ -90,12 +85,13 @@
                     Grid.ColumnSpan="2" Name="spControlButtons"
                     HorizontalAlignment="Center" VerticalAlignment="Top">
 
-            <Button Name="btnNew" Style="{StaticResource AnimatedButton}"
-                    Content="New" MinWidth="100" />
-            <Button Name="btnDelete" Style="{StaticResource AnimatedButton}"
-                    Content="Delete" MinWidth="100" />
-            <Button Name="btnSave" Style="{StaticResource AnimatedButton}"
-                    Content="Save" MinWidth="100"/>
+            <Button Name="btnNewMiniCard" Style="{StaticResource AnimatedButton}"
+                    Content="&#10133;" Foreground="LawnGreen" MinWidth="100" ToolTip="New"
+                    Click="BtnNewMiniCard_OnClick"/>
+            <Button Name="btnDeleteMiniCard" Style="{StaticResource AnimatedButton}"
+                    Content="&#45;" Foreground="Red" FontSize="20" MinWidth="100" ToolTip="Delete"/>
+            <Button Name="btnSaveMiniCard" Style="{StaticResource AnimatedButton}"
+                    Content="&#128190;" FontSize="16" MinWidth="100" ToolTip="Save"/>
 
         </StackPanel>
         

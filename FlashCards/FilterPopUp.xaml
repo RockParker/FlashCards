@@ -1,0 +1,34 @@
+﻿<Window x:Class="FlashCards.FilterPopUp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:FlashCards"
+        mc:Ignorable="d"
+        Title="FilterPopUp" Height="100" Width="150" 
+        WindowStyle="None">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/CustomButtonTemplate.xaml" />
+                <ResourceDictionary Source="/Resources/ColourDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    <Grid Name="HostGrid" Background="{StaticResource WindowBackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Name="FirstRow" Height="1*" />
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <TextBox Grid.Row="0" Name ="tbInput" 
+                 Text="Filter Name here" FontSize="16"
+                 KeyDown="TbInput_OnKeyDown" 
+                 Background="{StaticResource LighterBackgroundBrush}" 
+                 Foreground="White"/>
+        
+        <Button Grid.Row="1" Name="btnOkay" Click="btnOkay_OnClick" Content="&#10003;"
+                Foreground="Green" Style="{StaticResource AnimatedButton}"></Button>
+    </Grid>
+</Window>

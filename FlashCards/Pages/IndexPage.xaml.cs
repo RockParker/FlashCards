@@ -13,11 +13,9 @@ namespace FlashCards.Pages
     public partial class IndexPage : Page
     {
 
-        private Frame _frame;
-        public IndexPage(Frame frame)
+        public IndexPage()
         {
             InitializeComponent();
-            _frame = frame;
 
             //setting properties of the flash card
             fcWelcome.Question = "This is a question";

@@ -10,14 +10,19 @@ namespace FlashCards
     public partial class MainWindow : Window
     {
         private EditingPage _editingpage;
+
+        private IndexPage _indexpage;
+        
+        
         //other pages here in the future
         public MainWindow()
         {
             InitializeComponent();
 
             _editingpage = new();
-
-            this.MainFrame.Navigate(new IndexPage(this.MainFrame));
+            _indexpage = new();
+            
+            this.MainFrame.Navigate(_indexpage);
 
         }
 
@@ -39,6 +44,11 @@ namespace FlashCards
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void BtnHome_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

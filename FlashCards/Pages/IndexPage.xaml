@@ -25,56 +25,21 @@
         
     </Page.Resources>
 
-    <Grid Background="{StaticResource MainBackgroundBrush}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
+<Grid>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="3*"/>
+        <ColumnDefinition Width="8*"/>
+    </Grid.ColumnDefinitions>
+    
+    <StackPanel Grid.Column="0">
+        <Label>
+            Funny Text Here
+        </Label>
+    </StackPanel>
 
-        <!--This hosts the main buttons and labels-->
-        <StackPanel Grid.ColumnSpan="2"
-                    Grid.RowSpan="4"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Background="{StaticResource LighterBackgroundBrush}">
-            <Label Margin="20" Name="lblTitle"
-               Foreground="White"
-               Background="Transparent" Content="Flash Card Applet"
-               FontSize="30"
-               />
-
-            <Button Style="{StaticResource PrimaryButton}"                 
-                Name="btnStart"
-                Content="Start"/>
-
-
-            <Button Style="{StaticResource PrimaryButton}"                    
-                Name="btnEdit"
-                Content="Edit"
-                    Click="btnEdit_Click"/>
-
-
-            <Button Style="{StaticResource PrimaryButton}"
-                    Name="btnExit"
-                    Content="Exit!"
-                    Click="btnExit_Click"/>
-
-        </StackPanel>
-
-        <!--The tutorial flashcard-->
+    <!--The tutorial flashcard-->
         <uielements:FlashCard
-            Grid.Column="2"
-            Grid.ColumnSpan="2"
-            Grid.RowSpan="2"
-            Grid.Row="1"
+            Grid.Column="1"
             Margin="30"
             x:Name="fcWelcome"/>
         
