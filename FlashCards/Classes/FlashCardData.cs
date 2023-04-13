@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace FlashCards.Classes
 {
-    public struct FlashCardData
+    public class FlashCardData
     {
         public int ID;
         public string Question { get; set; }
         public string Answer { get; set; }
 
-        public List<string> Filters;
+        public List<string> Filters { get; set; }
+
+
 
         public FlashCardData(int id, string question, string answer, List<string> filters)
         {
@@ -21,5 +23,8 @@ namespace FlashCards.Classes
             Answer = answer;
             Filters = filters;
         }
+
+
+
     }
 }
