@@ -1,84 +1,121 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using FlashCards.Classes;
 
 namespace FlashCards.UIElements
 {
     /// <summary>
     /// Interaction logic for EditableFlashCard.xaml
     /// </summary>
-    public partial class EditableFlashCard : UserControl
+    public partial class EditableFlashCard
     {
-        public delegate void myDelegate();
-        public myDelegate textChangedInvoker;
-        public string Question
+        private string Question
         {
-            get { return lblQuestion.Text; }
-            set { lblQuestion.Text = value; }
+            get => lblQuestion.Text;
+            set => lblQuestion.Text = value;
         }
 
-        public string Answer
+        private string Answer
         {
-            get { return lblAnswer.Text; }
-            set { lblAnswer.Text = value; }
+            get => lblAnswer.Text;
+            set => lblAnswer.Text = value; 
 
         }
 
         private int id = int.MaxValue;
-        public int ID
+        private int ID
         {
-            get
-            {
-                return id;
-            }
+            get => id;
             set
             {
                 id = value;
                 lblID.Content = value;
             }
         }
+        
+        private FlashCardData _currentData;
+
+        public FlashCardData? CurrentData
+        {
+            get => _currentData;
+            set
+            {
+                SaveData();
+                _currentData = value;
+                LoadData();
+            }
+        }
+
+        public MiniCardButton CurrentCardButton { get; set; }
 
         public EditableFlashCard()
         {
             InitializeComponent();
         }
-
-        private void tbEditable_GotMouseCapture(object sender, MouseEventArgs e)
+        
+        /// <summary>
+        /// loads the given data object into the text fields
+        /// </summary>
+        private void LoadData()
         {
-            if (sender == null)
-            {
-                MessageBox.Show("NullSender\nHow...");
-                return;
-            }
+            if (CurrentData == null) return;
+
+            ID = CurrentData.ID;
+            Question = CurrentData.Question; //triggers text changed.
+            Answer = CurrentData.Answer; //triggers text changed.
+        }
+
+        /// <summary>
+        /// saves the current text fields to the data object
+        /// </summary>
+        private void SaveData()
+        {
+            if (CurrentData == null) return;
+            
+            
+            CurrentData.ID = ID;
+            CurrentData.Question = Question;
+            CurrentData.Answer = Answer;
+                
+            //---implement later---
+            //_currentData.Filters = Filters;
+        }
+        
+        
+        
+        
+        /*===========================================
+         *===========================================
+         *              EVENT HANDLERS
+         *===========================================
+         *===========================================
+         */
+
+        private void OnFocus (object sender, MouseEventArgs e)
+        {
             (sender as TextBox).SelectAll();
         }
 
-        private void tbEditable_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        private void OnFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
-            if (sender == null)
-            {
-                MessageBox.Show("NullSender\nHow...");
-                return;
-            }
-            (sender as TextBox).SelectAll();
+           (sender as TextBox).SelectAll();
         }
 
+        /// <summary>
+        /// only used to change the text of the MiniCardButton
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lbl_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (textChangedInvoker == null)
-                return;
-            textChangedInvoker.Invoke();
+            if (CurrentCardButton == null) return;
+            CurrentCardButton.tbQuestion.Text = Question;
+        }
+
+        private void OnLostFocus (object sender, RoutedEventArgs e)
+        {
+            SaveData();
         }
     }
 }

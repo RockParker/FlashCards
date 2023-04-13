@@ -50,6 +50,13 @@
                 <Button Name="btnSettings" Style="{StaticResource AnimatedButton}"
                                                             Content="&#9881;" MinHeight="{Binding ElementName=btnSettings, Path=ActualWidth}"
                                                             Click="btnSettings_Click" FontSize="23" ToolTip="Settings"/>
+                <StackPanel Name="spSettings" Visibility="Collapsed" >
+            
+                    <Button Name="btnFullscreen" Click="BtnFullscreen_OnClick" 
+                            Style="{StaticResource AnimatedButton}" Content="FullScreen"
+                            FontSize="12" />
+            
+                </StackPanel>
             </StackPanel>
         
         <StackPanel Grid.Column="0" Grid.Row="2" VerticalAlignment="Bottom">
@@ -60,6 +67,10 @@
             />
         </StackPanel>
         
+
+
+        
+        
             <Border CornerRadius="30" Padding="10"
                     Grid.Row="0" Grid.RowSpan="3"
                     Grid.Column="1" Grid.ColumnSpan="2"
@@ -68,6 +79,6 @@
                 
                     <Frame Name = "MainFrame" NavigationUIVisibility="Hidden"/>
             </Border>
-        </Grid>
+    </Grid>
     </Border>
 </Window>

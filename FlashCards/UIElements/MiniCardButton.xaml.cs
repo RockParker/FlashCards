@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace FlashCards.UIElements
 {
@@ -20,15 +10,23 @@ namespace FlashCards.UIElements
     /// </summary>
     public partial class MiniCardButton : UserControl
     {
-        public delegate void myDelegate(object sender);
+        public delegate void myDelegate(MiniCardButton sender,int id);
         public myDelegate? clickInvoker { get; set; }
-        
+
+        public String QuestionText
+        {
+            get => tbQuestion.Text; 
+            set => tbQuestion.Text = value;
+        }
+
         private int ID;
-        public MiniCardButton(int id, myDelegate invoker)
+        
+        
+        public MiniCardButton(int id, myDelegate del)
         {
             InitializeComponent();
             ID = id;
-            clickInvoker = invoker;
+            clickInvoker = del;
         }
 
         private void Click(object sender, MouseEventArgs e)
@@ -38,7 +36,7 @@ namespace FlashCards.UIElements
                 MessageBox.Show("InvokerNullException\nTry a restart");
                 return;
             }
-            clickInvoker.Invoke(this);
+            clickInvoker.Invoke(this, ID);
         }
     }
 }
